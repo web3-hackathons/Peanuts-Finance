@@ -77,7 +77,7 @@ contract Staker {
 
 
   // Add a `withdraw()` function to let users withdraw their balance
-  function withdraw() public {
+  function withdraw(address _payable_to) public {
     require(openForWithdraw, "Threshold has not been met for withdrawal.");
     uint256 userBalance = balances[msg.sender];
      // check if the sender has a balance to withdraw
@@ -85,7 +85,7 @@ contract Staker {
 
     balances[msg.sender] = 0;
     // Transfer balance back to the user
-    (bool sent,) = msg.sender.call{value: userBalance}("");
+    (bool sent,) = _payable_to.call{value: userBalance}("");
     require(sent, "Failed to send user balance back to the user");
   }
 
