@@ -28,7 +28,7 @@ yarn deploy
 
 ### Deployment 
 
-Frontend:
+**Frontend:**
 
 📝 Edit the targetNetwork in App.jsx (in packages/react-app/src) to be the public network where you deployed your smart contract.
 
@@ -37,7 +37,7 @@ Frontend:
 💽 Upload your app to surge with `yarn surge` (you could also yarn s3 or maybe even yarn ipfs?)
 
 
-Snart contracts:
+**Smart contracts:**
 
 📡 Edit the `defaultNetwork` to your choice of public EVM networks in packages/hardhat/hardhat.config.js
 

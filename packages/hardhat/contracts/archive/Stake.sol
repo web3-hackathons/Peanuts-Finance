@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: MIT
+
+// This contract allows user to stake USDC into the vault and receives a receipt token RUSDC
 pragma solidity 0.8.4;
 
 import "hardhat/console.sol";
