@@ -1,6 +1,27 @@
-# Peanuts Staking
+# Peanuts Finance | Dollar Cost Autocompounding for Da Normies
 
-The goal of this Contract is to create a Staking dApp that will allow public users to stack some ETH if some conditions are met. If those conditions are not met they will be able to withdraw their funds.
+
+Users who do not have time to keep up with the crypto market might find it hard to dollar cost average into a basket of cryptocurrencies.
+Existing solutions for dollar cost averaging while they allow users to purchase basket of cryptocurrencies, they do not allow users to easily earn interest on those cryptocurrencies.
+
+Peanuts allows user to dollar cost average into a pool of cryptocurrencies and earn interest on those cryptocurrencies.
+
+The user can choose to have their dollar cost average automatically compounded every day, weekly, or monthly.
+
+On withdrawal, user can choose to withdraw their tokens either in the tokens of their strategy or in a stablecoin (USDC).
+
+The idea is that users can enjoy the benefits of exposure to a basket of crypto of their choosing and at the same time earn interest on those cryptocurrencies in native USDC.
+
+### User Story
+E.g you got 1k usdc on ftm
+
+- you put into this vault, and you can set a custom strategy for it
+- every month or epoch the vault uses your money to purchase a basket of 3-5 tokens. 
+- The vault will then use the tokens to earn interest on the tokens and sells the interest into stable coin to replenish the vault.
+- when you withdraw, you can choose to withdraw your share of tokens in the vault as USDC or in the coins that you initially chose
+
+
+
 
 Frontend:
 https://peanuts-profit.surge.sh/
