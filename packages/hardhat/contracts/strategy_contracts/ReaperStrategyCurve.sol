@@ -2,12 +2,12 @@
 
 pragma solidity ^0.8.0;
 
-import "./abstract/ReaperBaseStrategyv1_1.sol";
-import "./interfaces/IUniswapV2Router02.sol";
-import "./interfaces/ICurveRegistry.sol";
-import "./interfaces/ICurveSwap.sol";
-import "./interfaces/ICurveSwap3.sol";
-import "./interfaces/IRewardsGauge.sol";
+import "../abstract/ReaperBaseStrategyv1_1.sol";
+import "../interfaces/IUniswapV2Router02.sol";
+import "../interfaces/ICurveRegistry.sol";
+import "../interfaces/ICurveSwap.sol";
+import "../interfaces/ICurveSwap3.sol";
+import "../interfaces/IRewardsGauge.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
 
 /**

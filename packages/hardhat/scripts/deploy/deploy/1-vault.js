@@ -1,7 +1,7 @@
 async function main() {
-  const Vault = await ethers.getContractFactory('ReaperVaultv1_4');
+  const Vault = await ethers.getContractFactory('PeanutsVault');
 
-  const wantAddress = '0xd02a30d33153877bc20e5721ee53dedee0422b2f';
+  const wantAddress = '0xd02a30d33153877bc20e5721ee53dedee0422b2f'; // this contains the address of the pool we want
   const tokenName = 'g3CRV Curve Crypt';
   const tokenSymbol = 'rf-g3CRV';
   const depositFee = 0;

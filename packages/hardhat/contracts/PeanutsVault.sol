@@ -13,7 +13,7 @@ import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
  * This is the contract that receives funds and that users interface with.
  * The yield optimizing strategy itself is implemented in a separate 'Strategy.sol' contract.
  */
-contract ReaperVaultv1_4 is ERC20, Ownable, ReentrancyGuard {
+contract PeanutsVault is ERC20, Ownable, ReentrancyGuard {
     using SafeERC20 for IERC20;
 
     // The strategy in use by the vault.
@@ -32,27 +32,6 @@ contract ReaperVaultv1_4 is ERC20, Ownable, ReentrancyGuard {
 
     // The token the vault accepts and looks to maximize.
     IERC20 public token;
-
-    /**
-     * + WEBSITE DISCLAIMER +
-     * While we have taken precautionary measures to protect our users,
-     * it is imperative that you read, understand and agree to the disclaimer below:
-     *
-     * Using our platform may involve financial risk of loss.
-     * Never invest more than what you can afford to lose.
-     * Never invest in a Reaper Vault with tokens you don't trust.
-     * Never invest in a Reaper Vault with tokens whose rules for minting you don’t agree with.
-     * Ensure the accuracy of the contracts for the tokens in the Reaper Vault.
-     * Ensure the accuracy of the contracts for the Reaper Vault and Strategy you are depositing in.
-     * Check our documentation regularly for additional disclaimers and security assessments.
-     * ...and of course: DO YOUR OWN RESEARCH!!!
-     *
-     * By accepting these terms, you agree that Byte Masons, Fantom.Farm, or any parties
-     * affiliated with the deployment and management of these vaults or their attached strategies
-     * are not liable for any financial losses you might incur as a direct or indirect
-     * result of investing in any of the pools on the platform.
-     */
-    mapping(address => bool) public hasReadAndAcceptedTerms;
 
     /**
      * @dev simple mappings used to determine PnL denominated in LP tokens,
@@ -101,17 +80,6 @@ contract ReaperVaultv1_4 is ERC20, Ownable, ReentrancyGuard {
         require(block.timestamp <= (constructionTime + 1200), "initialization period over, too bad!");
         strategy = _strategy;
         initialized = true;
-        return true;
-    }
-
-    /**
-     * @dev Gives user access to the client
-     * @notice this does not affect vault permissions, and is read from client-side
-     */
-    function agreeToTerms() public returns (bool) {
-        require(!hasReadAndAcceptedTerms[msg.sender], "you have already accepted the terms");
-        hasReadAndAcceptedTerms[msg.sender] = true;
-        emit TermsAccepted(msg.sender);
         return true;
     }
 

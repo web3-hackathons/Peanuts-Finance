@@ -56,3 +56,19 @@ Update the api-key in packages/hardhat/package.json file.
 
 Now you are ready to run the `yarn verify --network your_network command` to verify your contracts on etherscan 🛰
 
+
+
+**Smart contracts Deployment:**
+1. Deploy the strategy contract 
+2. Deploy the staking contract with the strategy contract address
+
+Local Deployment
+```
+npx hardhat compile
+npx hardhat run --network localhost scripts/deploy/deploy/1-vault-test.js
+
+```
+
+
+**Tests:**
+`npx hardhat test`

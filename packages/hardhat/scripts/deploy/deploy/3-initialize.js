@@ -3,7 +3,7 @@ async function main() {
   const strategyAddress = 'TODO';
   const options = {gasPrice: 900000000000, gasLimit: 9000000};
 
-  const Vault = await ethers.getContractFactory('ReaperVaultv1_4');
+  const Vault = await ethers.getContractFactory('PeanutsVault');
   const vault = Vault.attach(vaultAddress);
 
   await vault.initialize(strategyAddress, options);
