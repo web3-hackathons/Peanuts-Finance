@@ -49,7 +49,7 @@ yarn deploy
 
 ### Deployment 
 
-Frontend:
+**Frontend:**
 
 📝 Edit the targetNetwork in App.jsx (in packages/react-app/src) to be the public network where you deployed your smart contract.
 
@@ -58,7 +58,7 @@ Frontend:
 💽 Upload your app to surge with `yarn surge` (you could also yarn s3 or maybe even yarn ipfs?)
 
 
-Snart contracts:
+**Smart contracts:**
 
 📡 Edit the `defaultNetwork` to your choice of public EVM networks in packages/hardhat/hardhat.config.js
 
@@ -77,3 +77,19 @@ Update the api-key in packages/hardhat/package.json file.
 
 Now you are ready to run the `yarn verify --network your_network command` to verify your contracts on etherscan 🛰
 
+
+
+**Smart contracts Deployment:**
+1. Deploy the strategy contract 
+2. Deploy the staking contract with the strategy contract address
+
+Local Deployment
+```
+npx hardhat compile
+npx hardhat run --network localhost scripts/deploy/deploy/1-vault-test.js
+
+```
+
+
+**Tests:**
+`npx hardhat test`
