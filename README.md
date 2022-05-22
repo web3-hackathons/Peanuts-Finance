@@ -85,11 +85,20 @@ Now you are ready to run the `yarn verify --network your_network command` to ver
 
 Local Deployment
 ```
+cd packages/hardhat
 npx hardhat compile
-npx hardhat run --network localhost scripts/deploy/deploy/1-vault-test.js
+npx hardhat run --network localhost scripts/setup/deploy_vault_test.js
 
 ```
 
 
 **Tests:**
 `npx hardhat test`
+
+
+#### 📜 Contract Verification
+Update the api-key in packages/hardhat/package.json file. You can get your key [here](https://etherscan.io/myapikey).
+
+![](https://user-images.githubusercontent.com/9419140/144075208-c50b70aa-345f-4e36-81d6-becaa5f74857.png)
+
+Now you are ready to run the yarn verify --network your_network command to verify your contracts on etherscan 🛰
