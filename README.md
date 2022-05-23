@@ -88,9 +88,8 @@ Local Deployment
 cd packages/hardhat
 npx hardhat compile
 npx hardhat run --network localhost scripts/setup/deploy_vault_test.js
-
 ```
-
+Testnet:` npx hardhat run --network fantom_testnet scripts/setup/deploy_vault_test.js`
 
 **Tests:**
 `npx hardhat test`

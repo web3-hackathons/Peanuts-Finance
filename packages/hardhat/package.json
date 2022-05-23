@@ -42,6 +42,6 @@
     "send": "hardhat send",
     "generate": "hardhat generate",
     "account": "hardhat account",
-    "verify": "hardhat etherscan-verify --api-key 51KQCYSZV4UTRTQ315C2ZVE7T4R6DYFNHQ"
+    "verify": "hardhat etherscan-verify --api-key RV2T5N2G6PW9PV3F2K5RJECPPJ4R8TCHVC"
   }
 }
