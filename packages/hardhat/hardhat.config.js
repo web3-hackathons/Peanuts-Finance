@@ -27,7 +27,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "fantom_testnet";
+const defaultNetwork = "localhost";//"fantom_testnet";
 const PRIVATE_KEY = process.env.DEPLOYER_PRIVATE_KEY;
 
 
