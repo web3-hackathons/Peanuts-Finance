@@ -10,12 +10,12 @@
 
 @keyframes float1 {
     40% {transform: 0}
-    60% {transform: translateY(40px)}
+    60% {transform: translateY(20px)}
     80% {transform: 0}
 }
 @keyframes float2 {
     20% {transform: 0}
-    50% {transform: translateY(70px)}
+    50% {transform: translateY(30px)}
     60% {transform: 0}
 }
 @keyframes float3 {
