@@ -1,7 +1,9 @@
 import { Menu, PageHeader } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Account from "./Account";
+import "./Header.scss";
 // displays a page header
 
 export default function Header({
@@ -15,6 +17,16 @@ export default function Header({
   logoutOfWeb3Modal,
   blockExplorer,
 }) {
+  const history = useHistory();
+  const goPools = (e) => {
+    history.push("/pools");
+  }
+  const goWhitePaper = () => {
+
+  }
+  const goGithub = () => {
+    
+  }
   return (
     <div
       style={{
@@ -52,15 +64,18 @@ export default function Header({
             background: "none",
           }}
         >
-          <Menu.Item>
+          <Menu.Item className="headerItems" onClick={goPools}>
+            Pools!
+          </Menu.Item>
+          <Menu.Item className="headerItems" onClick={goWhitePaper}>Learn more</Menu.Item>
+          <Menu.Item className="headerItems" onClick={goGithub}>
             <GithubOutlined
               style={{
                 fontSize: "2em",
-                verticalAlign: "center"
+                verticalAlign: "middle"
               }}
             />
           </Menu.Item>
-          <Menu.Item>Learn more</Menu.Item>
         </Menu>
         <Account
           address={address}

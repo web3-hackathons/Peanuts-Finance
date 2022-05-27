@@ -21,7 +21,7 @@ import {
 import { useEventListener } from "eth-hooks/events/useEventListener";
 import { useExchangeEthPrice } from "eth-hooks/dapps/dex";
 // import Hints from "./Hints";
-import { ExampleUI, Hints, Subgraph, Home } from "./views";
+import { ExampleUI, Hints, Subgraph, Home, PoolOlPools } from "./views";
 
 import { useContractConfig } from "./hooks";
 import Portis from "@portis/web3";
@@ -480,7 +480,7 @@ function App(props) {
 
   return (
     <div className="App">
-      {networkDisplay}
+      {/* {networkDisplay} */}
       <BrowserRouter>
         <Header
           address={address}
@@ -521,16 +521,6 @@ function App(props) {
             {completeDisplay}
             <Home yourLocalBalance={yourLocalBalance} readContracts={readContracts} />
 
-            {/* uncomment for a second contract:
-            <Contract
-              name="SecondContract"
-              signer={userProvider.getSigner()}
-              provider={localProvider}
-              address={address}
-              blockExplorer={blockExplorer}
-              contractConfig={contractConfig}
-            />
-            */}
           </Route>
           <Route path="/contracts">
             <Contract
@@ -549,6 +539,9 @@ function App(props) {
               blockExplorer={blockExplorer}
               contractConfig={contractConfig}
             />
+          </Route>
+          <Route path="/pools">
+            <PoolOlPools></PoolOlPools>
           </Route>
         </Switch>
       </BrowserRouter>
