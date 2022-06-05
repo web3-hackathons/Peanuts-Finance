@@ -1,4 +1,5 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import  { AccountProvider }  from "./contexts";
 import React from "react";
 import { ThemeSwitcherProvider } from "react-css-theme-switcher";
 import ReactDOM from "react-dom";
@@ -22,7 +23,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <ThemeSwitcherProvider themeMap={themes} defaultTheme={prevTheme || "light"}>
-      <App subgraphUri={subgraphUri} />
+      <AccountProvider>
+        <App subgraphUri={subgraphUri} />
+      </AccountProvider>
     </ThemeSwitcherProvider>
   </ApolloProvider>,
   document.getElementById("root"),
