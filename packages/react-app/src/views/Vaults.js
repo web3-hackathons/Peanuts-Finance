@@ -22,4 +22,5 @@ export let vaults = [
         ]
     }
 ]
+
 // https://stackoverflow.com/questions/882727/is-there-a-way-to-use-variable-keys-in-a-javascript-object-literal

@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Typography, PageHeader, Col, Row, Input, Button } from "antd";
 const { Title } = Typography;
 const { Search } = Input;
 import { vaults, vaultImages, vaultName, vaultDeposited, vaultAddress, vaultTokenAddr } from "./Vaults";
-import "./PoolOlPools.scss";
 import { useWeb3Account } from "../contexts";
+import { Overlay, PoolDetails } from "../components";
+import "./PoolOlPools.scss";
 
 function PoolOlPools({ yourLocalBalance, readContracts }) {
   const {
@@ -28,6 +30,9 @@ function PoolOlPools({ yourLocalBalance, readContracts }) {
     mainnetInfura,
     blockExplorer,
   } = useWeb3Account();
+
+  const [isOverlayOpen, setOverlayOpen] = useState(false);
+  const [vaultIdx, setVaultIdx] = useState(0);
 
   console.log("targetNetwork");
   console.log(targetNetwork);
@@ -166,9 +171,15 @@ function PoolOlPools({ yourLocalBalance, readContracts }) {
               <Col span={subSpanSize}>0</Col>
               <Col span={subSpanSize}>0</Col>
               <Col span={subSpanSize}>
-                <Button shape="round" onClick={() => {
-                    
-                }}>MORE</Button>
+                <Button
+                  shape="round"
+                  onClick={() => {
+                    setOverlayOpen(true);
+                    setVaultIdx(idx);
+                  }}
+                >
+                  MORE
+                </Button>
               </Col>
             </Row>
           );
@@ -209,9 +220,6 @@ function PoolOlPools({ yourLocalBalance, readContracts }) {
             <UpperRightSection />
           </Col>
         </Row>
-        {/* <Row>
-                    {targetNetwork}
-                </Row> */}
       </div>
       <div>{targetNetwork.rpcUrl}</div>
       <div
@@ -268,6 +276,11 @@ function PoolOlPools({ yourLocalBalance, readContracts }) {
           }}
         />
       </div>
+      {isOverlayOpen && (
+        <Overlay>
+          <PoolDetails index_p={vaultIdx} />
+        </Overlay>
+      )}
     </div>
   );
 }
