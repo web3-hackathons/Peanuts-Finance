@@ -95,9 +95,18 @@ Testnet:` npx hardhat run --network fantom_testnet scripts/setup/deploy_vault_te
 `npx hardhat test`
 
 
+#### Running Forked Blockchain
+`npx hardhat node --network hardhat`
+
+
 #### 📜 Contract Verification
 Update the api-key in packages/hardhat/package.json file. You can get your key [here](https://etherscan.io/myapikey).
 
 ![](https://user-images.githubusercontent.com/9419140/144075208-c50b70aa-345f-4e36-81d6-becaa5f74857.png)
 
 Now you are ready to run the yarn verify --network your_network command to verify your contracts on etherscan 🛰
+
+### TODO left:
+- Auto compounding Vault
+    - Deposit USDC
+    

@@ -3,7 +3,6 @@ const fs = require("fs");
 const chalk = require("chalk");
 require("dotenv").config();
 
-
 require("@nomiclabs/hardhat-waffle");
 require("@tenderly/hardhat-tenderly");
 
@@ -27,9 +26,8 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "localhost";//"fantom_testnet";
+const defaultNetwork = "localhost"; //"fantom_testnet";
 const PRIVATE_KEY = process.env.DEPLOYER_PRIVATE_KEY;
-
 
 const mainnetGwei = 115;
 
@@ -55,6 +53,15 @@ module.exports = {
   // (you will need to restart the `yarn run start` dev server after editing the .env)
 
   networks: {
+    hardhat: {
+      chainId: 1337,
+      forking: {
+        url: "https://rpc.ftm.tools/",
+        chainId: 1337,
+        blockNumber: 30678400,
+      },
+    },
+
     localhost: {
       url: "http://localhost:8545",
       // notice no mnemonic here? it will just use account 0 of the hardhat node to deploy
