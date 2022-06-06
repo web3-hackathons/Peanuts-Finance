@@ -32,24 +32,39 @@ function Home({ yourLocalBalance, readContracts }) {
           zIndex: "-1",
         }}
       >
-        <img src="/wakuWakuNoBackground.png" style={{
+        <img
+          src="/wakuWakuNoBackground.png"
+          style={{
             height: "75%",
             position: "absolute",
             bottom: "0",
             left: "0",
-            animationName: "float1"
-        }}
+            animationName: "float1",
+          }}
           className="logos"
         />
-        
-        <img src="/peanutButterNoBackgroundLessAlpha.png" style={{
+
+        <img
+          src="/peanutButterNoBackgroundLessAlpha.png"
+          style={{
             height: "75%",
             position: "absolute",
             bottom: "0",
             right: "0",
-            animationName: "float2"
-        }}
+            animationName: "float2",
+          }}
           className="logos"
+        />
+
+        <img
+          src="/tiltedCoinGammaed.png"
+          style={{
+            display: "inline-block",
+            height: "40%",
+            position: "absolute",
+            top: "5%",
+            left: "25%"
+          }}
         />
       </div>
 
@@ -61,17 +76,26 @@ function Home({ yourLocalBalance, readContracts }) {
           textAlign: "left",
         }}
       >
-        <Title
-          style={{
-            borderBottom: "1px solid",
-            fontFamily: "'Indie Flower', cursive",
-            display: "inline-block",
-            fontSize: `4rem`,
-            margin: `0`,
-          }}
-        >
-          Peanuts Finance
-        </Title>
+        <div style={{}}>
+          <Title
+            style={{
+              borderBottom: "1px solid",
+              fontFamily: "'Indie Flower', cursive",
+              display: "inline-block",
+              fontSize: `4rem`,
+              margin: `0`,
+            }}
+          >
+            Peanuts Finance
+          </Title>
+          {/* <img
+            src="/tiltedCoinGammaed.png"
+            style={{
+              display: "inline-block",
+              height: "64px"
+            }}
+          /> */}
+        </div>
         <Title
           level={3}
           style={{
@@ -88,7 +112,7 @@ function Home({ yourLocalBalance, readContracts }) {
               backdropFilter: `blur(${10}px)`,
               backgroundColor: `rgba(255, 255, 255, 0.5)`,
               fontFamily: "'Montserrat', sans-serif",
-              border:"none"
+              border: "none",
             }}
           >
             <span

@@ -1,5 +1,6 @@
 # Peanuts Finance | Dollar Cost Autocompounding for Da Normies
 
+![image](https://user-images.githubusercontent.com/46377366/170250482-564c275e-ae17-49b0-9465-52eca1f7f1b0.png)
 
 Users who do not have time to keep up with the crypto market might find it hard to dollar cost average into a basket of cryptocurrencies.
 Existing solutions for dollar cost averaging while they allow users to purchase basket of cryptocurrencies, they do not allow users to easily earn interest on those cryptocurrencies.
@@ -13,14 +14,19 @@ On withdrawal, user can choose to withdraw their tokens either in the tokens of 
 The idea is that users can enjoy the benefits of exposure to a basket of crypto of their choosing and at the same time earn interest on those cryptocurrencies in native USDC.
 
 ### User Story
-E.g you got 1k usdc on ftm
+E.g you got 1k usdc on Avalanche
 
 - you put into this vault, and you can set a custom strategy for it
 - every month or epoch the vault uses your money to purchase a basket of 3-5 tokens. 
 - The vault will then use the tokens to earn interest on the tokens and sells the interest into stable coin to replenish the vault.
 - when you withdraw, you can choose to withdraw your share of tokens in the vault as USDC or in the coins that you initially chose
+![image](https://user-images.githubusercontent.com/46377366/170250579-cdccba1b-164e-4396-8b1e-70972d88b820.png)
 
 
+### Architecture
+![image](https://user-images.githubusercontent.com/46377366/170250717-31afd948-115a-4826-b0c8-c9925c2af170.png)
+
+![image](https://user-images.githubusercontent.com/46377366/170250766-325fc096-b377-424a-8c17-8970242e33e5.png)
 
 
 Frontend:
