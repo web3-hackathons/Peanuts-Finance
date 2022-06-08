@@ -5,11 +5,19 @@ pragma solidity ^0.8.0;
 interface IRewardsGauge {
     function balanceOf(address arg0) external view returns (uint256);
 
-    function claimed_reward(address _addr, address _token) external view returns (uint256);
+    function claimed_reward(address _addr, address _token)
+        external
+        view
+        returns (uint256);
 
-    function claimable_reward(address _addr, address _token) external view returns (uint256);
+    function claimable_reward(address _addr, address _token)
+        external
+        view
+        returns (uint256);
 
-    function claimable_reward_write(address _addr, address _token) external returns (uint256);
+    function claimable_reward_write(address _addr, address _token)
+        external
+        returns (uint256);
 
     function claim_rewards() external;
 

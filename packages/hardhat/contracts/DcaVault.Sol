@@ -1,0 +1,179 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "hardhat/console.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
+import "./keepers-v8/KeeperCompatible.sol";
+
+
+// OrderDetails is the amount of tokens that user will buy at each epoch
+struct OrderDetails {
+    address token;
+    uint8 percentagePurchase;
+}
+
+// UserPortfolio represents the holdings held by a user
+struct UserPortfolio {
+  UserPosition[] positions;
+}
+
+// Balance of one token
+struct UserPosition {
+    address token;
+    uint256 amount;
+}
+
+// User Strategy contains all the tokens to purchase and when to purchase these tokens
+struct UserStrategy {
+  uint8 : daysRemaining;
+  OrderDetails[] : orders;
+}
+
+contract DcaVault is Ownable, IUniswapV2Router02, KeeperCompatible {
+  using SafeMath for uint256;
+  using IERC20Metadata for (address, uint256);
+
+  // Attributes
+  mapping(address => UserStrategy) public userStrategies;
+  address[] public users; // All users who are deposited into the vault
+
+  // Chainlink Upkeep time interval
+  uint256 public immutable updateInterval;
+  // Stores last time the Chainlink Upkeep process ran
+  uint256 public lastTimeStamp;
+
+  uint256 public depositFee;
+  uint256 public constant PERCENT_DIVISOR = 10000;
+
+
+  // Events
+  event LogPurchase(address indexed user, address indexed token, uint256 amount, uint8 percentagePurchase);
+  event Deposit(address indexed user, uint256 amount);
+  event Withdraw(address indexed user, uint256 amount);
+
+  constructor(
+      address _uniswap_v2_router,
+      address _wethAddress, // This changes depending on the network
+      uint256 _updateInterval
+      uint256 _depositFee,
+
+  ){
+
+
+
+
+  }
+
+    /**
+    * @dev Function to exit the system. The vault will withdraw the required tokens
+    * from the strategy and pay up the token holder. A proportional number of IOU
+    * tokens are burned in the process.
+    */
+    function withdraw(uint256 _shares) public nonReentrant {
+        require(_shares > 0, "please provide amount");
+        uint256 r = (balance() * _shares) / totalSupply();
+        _burn(msg.sender, _shares);
+
+        uint256 b = token.balanceOf(address(this));
+        if (b < r) {
+            uint256 _withdraw = r - b;
+            IStrategy(strategy).withdraw(_withdraw);
+            uint256 _after = token.balanceOf(address(this));
+            uint256 _diff = _after - b;
+            if (_diff < _withdraw) {
+                r = b + _diff;
+            }
+        }
+        token.safeTransfer(msg.sender, r);
+        incrementWithdrawals(r);
+    }
+
+    // Swap Function
+
+      
+    /**  @dev This swap function is used to trade from one token to another
+    token in = the token address you want to trade out of
+    token out = the token address you want as the output of this trade
+    amount in = the amount of tokens you are sending in
+    amount out Min = the minimum amount of tokens you want out of the trade
+    to = the address you want the tokens to be sent to
+    */
+
+    function swap(
+        address _tokenIn,
+        address _tokenOut,
+        uint256 _amountIn,
+        uint256 _amountOutMin,
+        address _to
+    ) internal {
+        //first we need to transfer the amount in tokens from the msg.sender to this contract
+        //this contract will have the amount of in tokens
+        IERC20(_tokenIn).transferFrom(msg.sender, address(this), _amountIn);
+
+        //next we need to allow the uniswapv2 router to spend the token we just sent to this contract
+        //by calling IERC20 approve you allow the uniswap contract to spend the tokens in this contract
+        IERC20(_tokenIn).approve(address(uniswapV2Router), _amountIn);
+
+        //path is an array of addresses.
+        //this path array will have 3 addresses [tokenIn, WETHaddress, tokenOut]
+        //the if statement below takes into account if token in or token out is WETHaddress.  then the path is only 2 addresses
+        address[] memory path;
+        if (_tokenIn == WETHaddress || _tokenOut == WETHaddress) {
+            path = new address[](2);
+            path[0] = _tokenIn;
+            path[1] = _tokenOut;
+            // console.log("From %s => %s", path[0], path[1]);
+            // console.log("With %d => %d", _amountIn, _amountOutMin);
+        } else {
+            path = new address[](3);
+            path[0] = _tokenIn;
+            path[1] = WETHaddress;
+            path[2] = _tokenOut;
+        }
+        //then we will call swapExactTokensForTokens
+        //for the deadline we will pass in block.timestamp
+        //the deadline is the latest time the trade is valid for
+        uniswapV2Router.swapExactTokensForTokens(
+            _amountIn,
+            _amountOutMin,
+            path,
+            _to,
+            block.timestamp
+        );
+    }
+
+    /** @dev This function will return the minimum amount from a swap
+    input the 3 parameters below and it will return the minimum amount out
+    this is needed for the swap function above */
+    
+    function getAmountOutMin(
+        address _tokenIn,
+        address _tokenOut,
+        uint256 _amountIn
+    ) internal view returns (uint256) {
+        //path is an array of addresses.
+        //this path array will have 3 addresses [tokenIn, WETHaddress, tokenOut]
+        //the if statement below takes into account if token in or token out is WETHaddress.  then the path is only 2 addresses
+        address[] memory path;
+        if (_tokenIn == WETHaddress || _tokenOut == WETHaddress) {
+            path = new address[](2);
+            path[0] = _tokenIn;
+            path[1] = _tokenOut;
+        } else {
+            path = new address[](3);
+            path[0] = _tokenIn;
+            path[1] = WETHaddress;
+            path[2] = _tokenOut;
+        }
+
+        uint256[] memory amountOutMins = uniswapV2Router.getAmountsOut(
+            _amountIn,
+            path
+        );
+        return amountOutMins[path.length - 1];
+    }
+
+}

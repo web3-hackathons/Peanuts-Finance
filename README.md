@@ -116,3 +116,6 @@ Now you are ready to run the yarn verify --network your_network command to verif
 - Auto compounding Vault
     - Deposit USDC
     
+#### Misc
+prettier : `npx prettier --write 'contracts/**/*.sol'`
+docstring formatting : <https://docs.soliditylang.org/en/develop/natspec-format.html>

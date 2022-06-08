@@ -49,13 +49,26 @@ contract ReaperTreasury is Ownable {
         address _to,
         uint256 _amount
     ) external onlyOwner {
-        withdrawals[counter] = Withdrawal(_amount, _token, block.timestamp, false);
+        withdrawals[counter] = Withdrawal(
+            _amount,
+            _token,
+            block.timestamp,
+            false
+        );
         counter++;
         IERC20(_token).safeTransfer(_to, _amount);
     }
 
-    function withdrawFTM(address payable _to, uint256 _amount) external onlyOwner {
-        withdrawals[counter] = Withdrawal(_amount, address(0), block.timestamp, false);
+    function withdrawFTM(address payable _to, uint256 _amount)
+        external
+        onlyOwner
+    {
+        withdrawals[counter] = Withdrawal(
+            _amount,
+            address(0),
+            block.timestamp,
+            false
+        );
         counter++;
         _to.transfer(_amount);
     }
