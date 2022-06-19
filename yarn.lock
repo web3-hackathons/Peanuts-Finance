@@ -14,32 +14,16 @@
   "resolved" "https://registry.npmjs.org/@ant-design/icons-svg/-/icons-svg-4.1.0.tgz"
   "version" "4.1.0"
 
-"@ant-design/icons-svg@^4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@ant-design/icons-svg/-/icons-svg-4.2.1.tgz#8630da8eb4471a4aabdaed7d1ff6a97dcb2cf05a"
-  integrity sha512-EB0iwlKDGpG93hW8f85CTJTs4SvMX7tt5ceupvhALp1IF44SeUFOMhKUOYqpsoYWQKAOuTRDMqn75rEaKDp0Xw==
-
-"@ant-design/icons@^4.6.2":
-  version "4.6.2"
-  resolved "https://registry.npmjs.org/@ant-design/icons/-/icons-4.6.2.tgz"
-  integrity sha512-QsBG2BxBYU/rxr2eb8b2cZ4rPKAPBpzAR+0v6rrZLp/lnyvflLH3tw1vregK+M7aJauGWjIGNdFmUfpAOtw25A==
+"@ant-design/icons@^4.6.2", "@ant-design/icons@^4.7.0":
+  "integrity" "sha512-QsBG2BxBYU/rxr2eb8b2cZ4rPKAPBpzAR+0v6rrZLp/lnyvflLH3tw1vregK+M7aJauGWjIGNdFmUfpAOtw25A=="
+  "resolved" "https://registry.npmjs.org/@ant-design/icons/-/icons-4.6.2.tgz"
+  "version" "4.6.2"
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons-svg" "^4.0.0"
     "@babel/runtime" "^7.11.2"
     "classnames" "^2.2.6"
     "rc-util" "^5.9.4"
-
-"@ant-design/icons@^4.7.0":
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/@ant-design/icons/-/icons-4.7.0.tgz#8c3cbe0a556ba92af5dc7d1e70c0b25b5179af0f"
-  integrity sha512-aoB4Z7JA431rt6d4u+8xcNPPCrdufSRMUOpxa1ab6mz1JCQZOEVolj2WVs/tDFmN62zzK30mNelEsprLYsSF3g==
-  dependencies:
-    "@ant-design/colors" "^6.0.0"
-    "@ant-design/icons-svg" "^4.2.1"
-    "@babel/runtime" "^7.11.2"
-    classnames "^2.2.6"
-    rc-util "^5.9.4"
 
 "@ant-design/react-slick@~0.28.1":
   "integrity" "sha512-u3onF2VevGRbkGbgpldVX/nzd7LFtLeZJE0x2xIFT2qYHKkJZ6QT/jQ7KqYK4UpeTndoyrbMqLN4DiJza4BVBg=="
@@ -2569,16 +2553,12 @@
   "version" "1.0.0"
   dependencies:
     "@eth-optimism/hardhat-ovm" "^0.2.2"
-    "@nomiclabs/hardhat-ethers" "npm:hardhat-deploy-ethers"
     "@nomiclabs/hardhat-etherscan" "^2.1.7"
-    "@nomiclabs/hardhat-waffle" "^2.0.0"
     "@openzeppelin/contracts" "^4.6.0"
     "@openzeppelin/contracts-upgradeable" "^4.6.0"
     "@tenderly/hardhat-tenderly" "^1.0.10"
     "chai" "^4.2.0"
     "chalk" "^4.1.0"
-    "ethereum-waffle" "^3.1.1"
-    "ethers" "^5.4.4"
     "hardhat" "2.6.0"
     "hardhat-deploy" "^0.9.0"
     "node-watch" "^0.7.0"
@@ -2589,7 +2569,7 @@
   "resolved" "file:packages/react-app"
   "version" "1.0.0"
   dependencies:
-    "@ant-design/icons" "^4.2.2"
+    "@ant-design/icons" "^4.7.0"
     "@apollo/client" "^3.3.21"
     "@apollo/react-hooks" "^4.0.0"
     "@portis/web3" "^4.0.5"
@@ -2737,6 +2717,13 @@
   "integrity" "sha512-H8BSBoKE8EubJa0ONqecA2TviT3TnHeC4NpgnAHSUiuhZoQBfPB4L2P9bs8R6AoTW10Endvh3vc+fomVMIDIYQ=="
   "resolved" "https://registry.npmjs.org/@solidity-parser/parser/-/parser-0.11.1.tgz"
   "version" "0.11.1"
+
+"@solidity-parser/parser@^0.14.0":
+  "integrity" "sha512-eLjj2L6AuQjBB6s/ibwCAc0DwrR5Ge+ys+wgWo+bviU7fV2nTMQhU63CGaDKXg9iTmMxwhkyoggdIR7ZGRfMgw=="
+  "resolved" "https://registry.npmjs.org/@solidity-parser/parser/-/parser-0.14.1.tgz"
+  "version" "0.14.1"
+  dependencies:
+    "antlr4ts" "^0.5.0-alpha.4"
 
 "@surma/rollup-plugin-off-main-thread@^1.1.1":
   "integrity" "sha512-yBMPqmd1yEJo/280PAMkychuaALyQ9Lkb5q1ck3mjJrFuEobIfhnQ4J3mbvBoISmR3SWMWV+cGB/I0lCQee79A=="
@@ -4180,10 +4167,10 @@
   "resolved" "https://registry.npmjs.org/ansi-regex/-/ansi-regex-4.1.0.tgz"
   "version" "4.1.0"
 
-"ansi-regex@^5.0.0":
-  "integrity" "sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg=="
-  "resolved" "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.0.tgz"
-  "version" "5.0.0"
+"ansi-regex@^5.0.0", "ansi-regex@^5.0.1":
+  "integrity" "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ=="
+  "resolved" "https://registry.npmjs.org/ansi-regex/-/ansi-regex-5.0.1.tgz"
+  "version" "5.0.1"
 
 "ansi-styles@^2.2.1":
   "integrity" "sha1-tDLdM1i2NM914eRmQ2gkBTPB3b4="
@@ -4263,6 +4250,11 @@
     "rc-util" "^5.13.1"
     "scroll-into-view-if-needed" "^2.2.25"
     "warning" "^4.0.3"
+
+"antlr4ts@^0.5.0-alpha.4":
+  "integrity" "sha512-WPQDt1B74OfPv/IMS2ekXAKkTZIHl88uMetg6q3OTqgFxZ/dxDXI0EWLyZid/1Pe6hTftyg5N7gel5wNAGxXyQ=="
+  "resolved" "https://registry.npmjs.org/antlr4ts/-/antlr4ts-0.5.0-alpha.4.tgz"
+  "version" "0.5.0-alpha.4"
 
 "any-signal@^1.1.0":
   "integrity" "sha512-Cl08k4xItix3jvu4cxO/dt2rQ6iUAjO66pTyRMub+WL1VXeAyZydCpD8GqWTPKfdL28U0R0UucmQVsUsBnvCmQ=="
@@ -6435,7 +6427,9 @@
     "lodash.uniq" "^4.5.0"
 
 "caniuse-lite@^1.0.0", "caniuse-lite@^1.0.30000981", "caniuse-lite@^1.0.30001109", "caniuse-lite@^1.0.30001125", "caniuse-lite@^1.0.30001219", "caniuse-lite@^1.0.30001243":
-  "version" "1.0.30001342"
+  "integrity" "sha512-NwlQbJkxUFJ8nMErnGtT0QTM2TJ33xgz4KXJSMIrjXIbDVdaYueGyjOrLKRtJC+rTiWfi6j5cnZN1NBiSBJGNw=="
+  "resolved" "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001248.tgz"
+  "version" "1.0.30001248"
 
 "caniuse-lite@^1.0.30000844":
   "version" "1.0.30001174"
@@ -8450,6 +8444,11 @@
   "integrity" "sha512-A8OG5SR/ij3SsJdWDJdkkSYUjQdCUx6APQXem0SaEePBSRg4eymGYwBkKo1Y6DU+af/Jn2dBQqDBvjnr9Vi8nQ=="
   "resolved" "https://registry.npmjs.org/emittery/-/emittery-0.7.2.tgz"
   "version" "0.7.2"
+
+"emoji-regex@^10.0.0":
+  "integrity" "sha512-xAEnNCT3w2Tg6MA7ly6QqYJvEoY1tm9iIjJ3yMKK9JPlWuRHAMoe5iETwQnx3M9TVbFMfsrBgWKR+IsmswwNjg=="
+  "resolved" "https://registry.npmjs.org/emoji-regex/-/emoji-regex-10.1.0.tgz"
+  "version" "10.1.0"
 
 "emoji-regex@^7.0.1":
   "integrity" "sha512-CwBLREIQ7LvYFB0WyRvwhq5N5qPhc6PMjD6bYggFlI5YyDgl+0vxq5VHbMOFqLg7hfWzmu8T5Z1QofhmTIhItA=="
@@ -17545,15 +17544,27 @@
   dependencies:
     "fast-diff" "^1.1.2"
 
+"prettier-plugin-solidity@^1.0.0-beta.19":
+  "integrity" "sha512-xxRQ5ZiiZyUoMFLE9h7HnUDXI/daf1tnmL1msEdcKmyh7ZGQ4YklkYLC71bfBpYU2WruTb5/SFLUaEb3RApg5g=="
+  "resolved" "https://registry.npmjs.org/prettier-plugin-solidity/-/prettier-plugin-solidity-1.0.0-beta.19.tgz"
+  "version" "1.0.0-beta.19"
+  dependencies:
+    "@solidity-parser/parser" "^0.14.0"
+    "emoji-regex" "^10.0.0"
+    "escape-string-regexp" "^4.0.0"
+    "semver" "^7.3.5"
+    "solidity-comments-extractor" "^0.0.7"
+    "string-width" "^4.2.3"
+
 "prettier@^1.13.5":
   "integrity" "sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew=="
   "resolved" "https://registry.npmjs.org/prettier/-/prettier-1.19.1.tgz"
   "version" "1.19.1"
 
-"prettier@^2.0.5", "prettier@^2.1.2", "prettier@>=1.13.0":
-  "integrity" "sha512-lnJzDfJ66zkMy58OL5/NY5zp70S7Nz6KqcKkXYzn2tMVrNxvbqaBpg7H3qHaLxCJ5lNMsGuM8+ohS7cZrthdLQ=="
-  "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.3.2.tgz"
-  "version" "2.3.2"
+"prettier@^2.0.5", "prettier@^2.1.2", "prettier@^2.3.0", "prettier@^2.6.2", "prettier@>=1.13.0":
+  "integrity" "sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew=="
+  "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.6.2.tgz"
+  "version" "2.6.2"
 
 "pretty-bytes@^5.3.0":
   "integrity" "sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg=="
@@ -20028,6 +20039,11 @@
   "resolved" "https://registry.npmjs.org/solidity-ast/-/solidity-ast-0.4.32.tgz"
   "version" "0.4.32"
 
+"solidity-comments-extractor@^0.0.7":
+  "integrity" "sha512-wciNMLg/Irp8OKGrh3S2tfvZiZ0NEyILfcRCXCD4mp7SgK/i9gzLfhY2hY7VMCQJ3kH9UB9BzNdibIVMchzyYw=="
+  "resolved" "https://registry.npmjs.org/solidity-comments-extractor/-/solidity-comments-extractor-0.0.7.tgz"
+  "version" "0.0.7"
+
 "sort-keys@^1.0.0":
   "integrity" "sha1-RBttTTRnmPG05J6JIK37oOVD+a0="
   "resolved" "https://registry.npmjs.org/sort-keys/-/sort-keys-1.1.2.tgz"
@@ -20461,6 +20477,15 @@
     "is-fullwidth-code-point" "^3.0.0"
     "strip-ansi" "^6.0.0"
 
+"string-width@^4.2.3":
+  "integrity" "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g=="
+  "resolved" "https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz"
+  "version" "4.2.3"
+  dependencies:
+    "emoji-regex" "^8.0.0"
+    "is-fullwidth-code-point" "^3.0.0"
+    "strip-ansi" "^6.0.1"
+
 "string.prototype.matchall@^4.0.5":
   "integrity" "sha512-Z5ZaXO0svs0M2xd/6By3qpeKpLKd9mO4v4q3oMEQrk8Ck4xOD5d5XeBOOjGrmVZZ/AHB1S0CgG4N5r1G9N3E2Q=="
   "resolved" "https://registry.npmjs.org/string.prototype.matchall/-/string.prototype.matchall-4.0.5.tgz"
@@ -20553,6 +20578,13 @@
   "version" "6.0.0"
   dependencies:
     "ansi-regex" "^5.0.0"
+
+"strip-ansi@^6.0.1":
+  "integrity" "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A=="
+  "resolved" "https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz"
+  "version" "6.0.1"
+  dependencies:
+    "ansi-regex" "^5.0.1"
 
 "strip-bom@^2.0.0":
   "integrity" "sha1-YhmoVhZSBJHzV4i9vxRHqZx+aw4="
