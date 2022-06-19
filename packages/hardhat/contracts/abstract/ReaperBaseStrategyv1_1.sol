@@ -34,7 +34,8 @@ abstract contract ReaperBaseStrategyv1_1 is
      * Reaper Roles
      */
     bytes32 public constant STRATEGIST = keccak256("STRATEGIST");
-    bytes32 public constant STRATEGIST_MULTISIG = keccak256("STRATEGIST_MULTISIG");
+    bytes32 public constant STRATEGIST_MULTISIG =
+        keccak256("STRATEGIST_MULTISIG");
 
     /**
      * @dev Reaper contracts:
@@ -83,7 +84,11 @@ abstract contract ReaperBaseStrategyv1_1 is
      * {StrategistRemitterUpdated} Event that is fired each time the strategistRemitter address is updated.
      */
     event TotalFeeUpdated(uint256 newFee);
-    event FeesUpdated(uint256 newCallFee, uint256 newTreasuryFee, uint256 newStrategistFee);
+    event FeesUpdated(
+        uint256 newCallFee,
+        uint256 newTreasuryFee,
+        uint256 newStrategistFee
+    );
     event StratHarvest(address indexed harvester);
     event StrategistRemitterUpdated(address newStrategistRemitter);
 
@@ -117,7 +122,12 @@ abstract contract ReaperBaseStrategyv1_1 is
             _grantRole(STRATEGIST, _strategists[i]);
         }
 
-        harvestLog.push(Harvest({timestamp: block.timestamp, vaultSharePrice: IVault(_vault).getPricePerFullShare()}));
+        harvestLog.push(
+            Harvest({
+                timestamp: block.timestamp,
+                vaultSharePrice: IVault(_vault).getPricePerFullShare()
+            })
+        );
     }
 
     /**
@@ -152,9 +162,15 @@ abstract contract ReaperBaseStrategyv1_1 is
     function harvest() external override whenNotPaused {
         _harvestCore();
 
-        if (block.timestamp >= harvestLog[harvestLog.length - 1].timestamp + harvestLogCadence) {
+        if (
+            block.timestamp >=
+            harvestLog[harvestLog.length - 1].timestamp + harvestLogCadence
+        ) {
             harvestLog.push(
-                Harvest({timestamp: block.timestamp, vaultSharePrice: IVault(vault).getPricePerFullShare()})
+                Harvest({
+                    timestamp: block.timestamp,
+                    vaultSharePrice: IVault(vault).getPricePerFullShare()
+                })
             );
         }
 
@@ -171,13 +187,21 @@ abstract contract ReaperBaseStrategyv1_1 is
      *      and returns the average APR calculated across all the included
      *      log entries. APR is multiplied by PERCENT_DIVISOR to retain precision.
      */
-    function averageAPRAcrossLastNHarvests(int256 _n) external view returns (int256) {
+    function averageAPRAcrossLastNHarvests(int256 _n)
+        external
+        view
+        returns (int256)
+    {
         require(harvestLog.length >= 2, "need at least 2 log entries");
 
         int256 runningAPRSum;
         int256 numLogsProcessed;
 
-        for (uint256 i = harvestLog.length - 1; i > 0 && numLogsProcessed < _n; i--) {
+        for (
+            uint256 i = harvestLog.length - 1;
+            i > 0 && numLogsProcessed < _n;
+            i--
+        ) {
             runningAPRSum += calculateAPRUsingLogs(i - 1, i);
             numLogsProcessed++;
         }
@@ -244,7 +268,10 @@ abstract contract ReaperBaseStrategyv1_1 is
     /**
      * @dev updates the total fee, capped at 5%; only owner.
      */
-    function updateTotalFee(uint256 _totalFee) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    function updateTotalFee(uint256 _totalFee)
+        external
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {
         require(_totalFee <= MAX_FEE, "Fee Too High");
         totalFee = _totalFee;
         emit TotalFeeUpdated(totalFee);
@@ -264,8 +291,14 @@ abstract contract ReaperBaseStrategyv1_1 is
         uint256 _treasuryFee,
         uint256 _strategistFee
     ) external onlyRole(DEFAULT_ADMIN_ROLE) returns (bool) {
-        require(_callFee + _treasuryFee == PERCENT_DIVISOR, "sum != PERCENT_DIVISOR");
-        require(_strategistFee <= STRATEGIST_MAX_FEE, "strategist fee > STRATEGIST_MAX_FEE");
+        require(
+            _callFee + _treasuryFee == PERCENT_DIVISOR,
+            "sum != PERCENT_DIVISOR"
+        );
+        require(
+            _strategistFee <= STRATEGIST_MAX_FEE,
+            "strategist fee > STRATEGIST_MAX_FEE"
+        );
 
         callFee = _callFee;
         treasuryFee = _treasuryFee;
@@ -274,7 +307,10 @@ abstract contract ReaperBaseStrategyv1_1 is
         return true;
     }
 
-    function updateSecurityFee(uint256 _securityFee) external onlyRole(DEFAULT_ADMIN_ROLE) {
+    function updateSecurityFee(uint256 _securityFee)
+        external
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {
         require(_securityFee <= MAX_SECURITY_FEE, "fee to high!");
         securityFee = _securityFee;
     }
@@ -282,7 +318,11 @@ abstract contract ReaperBaseStrategyv1_1 is
     /**
      * @dev only owner can update treasury address.
      */
-    function updateTreasury(address newTreasury) external onlyRole(DEFAULT_ADMIN_ROLE) returns (bool) {
+    function updateTreasury(address newTreasury)
+        external
+        onlyRole(DEFAULT_ADMIN_ROLE)
+        returns (bool)
+    {
         treasury = newTreasury;
         return true;
     }
@@ -309,13 +349,21 @@ abstract contract ReaperBaseStrategyv1_1 is
      * @dev Only allow access to strategist or owner
      */
     function _onlyStrategistOrOwner() internal view {
-        require(hasRole(STRATEGIST, msg.sender) || hasRole(DEFAULT_ADMIN_ROLE, msg.sender), "Not authorized");
+        require(
+            hasRole(STRATEGIST, msg.sender) ||
+                hasRole(DEFAULT_ADMIN_ROLE, msg.sender),
+            "Not authorized"
+        );
     }
 
     /**
      * @dev Project an APR using the vault share price change between harvests at the provided indices.
      */
-    function calculateAPRUsingLogs(uint256 _startIndex, uint256 _endIndex) public view returns (int256) {
+    function calculateAPRUsingLogs(uint256 _startIndex, uint256 _endIndex)
+        public
+        view
+        returns (int256)
+    {
         Harvest storage start = harvestLog[_startIndex];
         Harvest storage end = harvestLog[_endIndex];
         bool increasing = true;
@@ -325,15 +373,21 @@ abstract contract ReaperBaseStrategyv1_1 is
 
         uint256 unsignedSharePriceChange;
         if (increasing) {
-            unsignedSharePriceChange = end.vaultSharePrice - start.vaultSharePrice;
+            unsignedSharePriceChange =
+                end.vaultSharePrice -
+                start.vaultSharePrice;
         } else {
-            unsignedSharePriceChange = start.vaultSharePrice - end.vaultSharePrice;
+            unsignedSharePriceChange =
+                start.vaultSharePrice -
+                end.vaultSharePrice;
         }
 
-        uint256 unsignedPercentageChange = (unsignedSharePriceChange * 1e18) / start.vaultSharePrice;
+        uint256 unsignedPercentageChange = (unsignedSharePriceChange * 1e18) /
+            start.vaultSharePrice;
         uint256 timeDifference = end.timestamp - start.timestamp;
 
-        uint256 yearlyUnsignedPercentageChange = (unsignedPercentageChange * ONE_YEAR) / timeDifference;
+        uint256 yearlyUnsignedPercentageChange = (unsignedPercentageChange *
+            ONE_YEAR) / timeDifference;
         yearlyUnsignedPercentageChange /= 1e14; // restore basis points precision
 
         if (increasing) {
@@ -366,8 +420,15 @@ abstract contract ReaperBaseStrategyv1_1 is
      *      Only DEFAULT_ADMIN_ROLE can upgrade the implementation once the timelock
      *      has passed.
      */
-    function _authorizeUpgrade(address) internal override onlyRole(DEFAULT_ADMIN_ROLE) {
-        require(upgradeProposalTime + UPGRADE_TIMELOCK < block.timestamp, "cooldown not initiated or still active");
+    function _authorizeUpgrade(address)
+        internal
+        override
+        onlyRole(DEFAULT_ADMIN_ROLE)
+    {
+        require(
+            upgradeProposalTime + UPGRADE_TIMELOCK < block.timestamp,
+            "cooldown not initiated or still active"
+        );
         clearUpgradeCooldown();
     }
 

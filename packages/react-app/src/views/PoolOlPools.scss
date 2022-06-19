@@ -1,0 +1,16 @@
+.poolOlPools{
+    background:rgba(255,255,255,0.4);
+}
+.poolHeader{
+    padding: 8px;
+}
+.antdCol{
+    padding: 4px;
+}
+.poolRow{
+    cursor: pointer;
+    &:hover{
+        transition: background-color 0.5s;
+        background-color: rgba(255,255,255,0.4);
+    }
+}

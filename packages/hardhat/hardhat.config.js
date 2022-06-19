@@ -3,7 +3,6 @@ const fs = require("fs");
 const chalk = require("chalk");
 require("dotenv").config();
 
-
 require("@nomiclabs/hardhat-waffle");
 require("@tenderly/hardhat-tenderly");
 
@@ -27,9 +26,8 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "fantom_testnet";
+const defaultNetwork = "localhost"; //"fantom_testnet";
 const PRIVATE_KEY = process.env.DEPLOYER_PRIVATE_KEY;
-
 
 const mainnetGwei = 115;
 
@@ -55,6 +53,15 @@ module.exports = {
   // (you will need to restart the `yarn run start` dev server after editing the .env)
 
   networks: {
+    hardhat: {
+      chainId: 1337,
+      forking: {
+        url: "https://rpc.ftm.tools/",
+        chainId: 1337,
+        blockNumber: 30678400,
+      },
+    },
+
     localhost: {
       url: "http://localhost:8545",
       // notice no mnemonic here? it will just use account 0 of the hardhat node to deploy
@@ -78,8 +85,7 @@ module.exports = {
     kovan: {
       url: "https://kovan.infura.io/v3/ec6a8acd1d354717acec099ad46a0bab", // <---- YOUR INFURA ID! (or it won't work)
       //    url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXX/eth/kovan", // <---- YOUR MORALIS ID! (not limited to infura)
-      accounts: [
-            process.env.DEPLOYER_PRIVATE_KEY],
+      accounts: [process.env.DEPLOYER_PRIVATE_KEY],
     },
     mainnet: {
       url: "https://mainnet.infura.io/v3/ec6a8acd1d354717acec099ad46a0bab", // <---- YOUR INFURA ID! (or it won't work)
@@ -265,8 +271,30 @@ module.exports = {
     },
   },
   etherscan: {
+    apiKey: "RV2T5N2G6PW9PV3F2K5RJECPPJ4R8TCHVC",
     // Add your api key here
-    apiKey: "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW",
+    // apiKey: {
+    //   mainnet: "YOUR_ETHERSCAN_API_KEY",
+    //   ropsten: "YOUR_ETHERSCAN_API_KEY",
+    //   rinkeby: "YOUR_ETHERSCAN_API_KEY",
+    //   goerli: "YOUR_ETHERSCAN_API_KEY",
+    //   kovan: "YOUR_ETHERSCAN_API_KEY",
+    //   // binance smart chain
+    //   bsc: "YOUR_BSCSCAN_API_KEY",
+    //   bscTestnet: "YOUR_BSCSCAN_API_KEY",
+    //   // huobi eco chain
+    //   heco: "YOUR_HECOINFO_API_KEY",
+    //   hecoTestnet: "YOUR_HECOINFO_API_KEY",
+    //   // fantom mainnet
+    //   opera: "YOUR_FTMSCAN_API_KEY",
+    //   fantom_testnet: "RV2T5N2G6PW9PV3F2K5RJECPPJ4R8TCHVC",
+    //   // optimism
+    //   optimisticEthereum: "YOUR_OPTIMISTIC_ETHERSCAN_API_KEY",
+    //   optimisticKovan: "YOUR_OPTIMISTIC_ETHERSCAN_API_KEY",
+    //   // polygon
+    //   polygon: "YOUR_POLYGONSCAN_API_KEY",
+    //   polygonMumbai: "YOUR_POLYGONSCAN_API_KEY",
+    // },
   },
 };
 

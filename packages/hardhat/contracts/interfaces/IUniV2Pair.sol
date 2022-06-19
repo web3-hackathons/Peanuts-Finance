@@ -15,7 +15,9 @@ interface IUniV2Pair {
 
     function balanceOf(address) external view returns (uint256);
 
-    function burn(address to) external returns (uint256 amount0, uint256 amount1);
+    function burn(address to)
+        external
+        returns (uint256 amount0, uint256 amount1);
 
     function decimals() external view returns (uint8);
 
