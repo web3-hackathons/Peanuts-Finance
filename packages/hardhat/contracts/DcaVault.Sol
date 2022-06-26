@@ -16,10 +16,10 @@ struct PortfolioShare {
 
 // A Stake represents how much a user of the MultiUserStacker protocol wants to spend buying tokens over a given period.
 // For example:
-// token: DAI
+// token: USDC
 // balance: 300
 // daysRemaining: 30
-// would cause DcaVault to spend 300 / 30 days = 10DAI per day buying tokens as defined by the User's portfolio
+// would cause DcaVault to spend 300 / 30 days = 10USDC per day buying tokens as defined by the User's portfolio
 struct Stake {
     address token;
     uint256 balance;
@@ -27,14 +27,14 @@ struct Stake {
 }
 
 contract DcaVault is Ownable, KeeperCompatibleInterface {
-    // Used to perform token swaps when a user's portfolio is being bought daily.
+    // Used to perform token swaps when a user's portfolio is being bought USDCly.
     IUniswapV2Router02 internal uniswapV2Router;
 
     // Address of WETH token.  This is needed because some times it is better to trade through WETH.
     // You might get a better price using WETH. Example trading from token A to WETH then WETH to token B might result in a better price.
     address WETHaddress;
 
-    // Contains a current list of approved token balances, i.e. For User A this contract is approved to spend x-amount of DAI over 'daysRemaining' days.
+    // Contains a current list of approved token balances, i.e. For User A this contract is approved to spend x-amount of USDC over 'daysRemaining' days.
     mapping(address => Stake) public userTokenBalances;
     event SetStake(
         address _from,
@@ -142,12 +142,12 @@ contract DcaVault is Ownable, KeeperCompatibleInterface {
             userTokenBalances[_buyer].balance > 0;
     }
 
-    // Main function called daily for each user of the protocol. Figures how much of the
+    // Main function called USDCly for each user of the protocol. Figures how much of the
     // user's stake is going to be spent today buying tokens and then buys those tokens
     // according to the percentages defined in the user's portfolio.
     function buyPortfolio(address _to) public {
-        // figure out how big a slice of DAI we're spending today
-        // today's DAI slice = dai balance / days remaining
+        // figure out how big a slice of USDC we're spending today
+        // today's USDC slice = USDC balance / days remaining
         uint256 stakeSlice;
         if (userTokenBalances[_to].daysRemaining <= 1) {
             stakeSlice = userTokenBalances[_to].balance;
@@ -305,7 +305,7 @@ contract DcaVault is Ownable, KeeperCompatibleInterface {
         performData = "checked";
     }
 
-    // Iterates over the list of users, checking if they're able to buy, and then buys their daily portfolio.
+    // Iterates over the list of users, checking if they're able to buy, and then buys their USDCly portfolio.
     function performUpkeep(
         bytes calldata /* performData */
     ) external override {
