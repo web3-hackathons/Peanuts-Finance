@@ -16,7 +16,10 @@ interface IStrategy {
     function balanceOf() external view returns (uint256);
 
     //returns the approx amount of profit from harvesting plus fee returned to harvest caller.
-    function estimateHarvest() external view returns (uint256 profit, uint256 callFeeToUser);
+    function estimateHarvest()
+        external
+        view
+        returns (uint256 profit, uint256 callFeeToUser);
 
     //withdraws all tokens and sends them back to the vault
     function retireStrat() external;

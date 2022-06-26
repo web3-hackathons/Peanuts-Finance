@@ -178,7 +178,7 @@ function PoolOlPools({ yourLocalBalance, readContracts }) {
                     setVaultIdx(idx);
                   }}
                 >
-                  MORE
+                  Manage
                 </Button>
               </Col>
             </Row>
@@ -256,6 +256,7 @@ function PoolOlPools({ yourLocalBalance, readContracts }) {
             <Col span={subSpanSize}>APY</Col>
             <Col span={subSpanSize}>DAILY</Col>
             <Col span={subSpanSize}>TVL</Col>
+            <Col span={subSpanSize}>Actions</Col>
           </Row>
           <ListOlPools />
         </div>
